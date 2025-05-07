@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { MoveRight, CheckCircle, Star, Clock, Truck, Smile, Award, Instagram, Youtube, Twitter, Linkedin } from "lucide-react";
+import { MoveRight, CheckCircle, Star, Clock, Truck, Smile, Award, Instagram, Youtube, Twitter, Linkedin, Activity, X } from "lucide-react";
 import logoHeader from "../assets/logo_header.png";
 import logoLight from "../assets/logo_light.png";
 import washingMachineVideo from "../assets/waiting_laundry.mp4";
 import studentImg from "../assets/student.png";
 import AboutUs from "./Aboutus";
+import AboutUsModal from "../components/AboutUsModal";
+import MobileNav from "../components/MobileNav";
 
-export default function LaunowHomePage() {
+export default function LaunowHomePage({ setPage }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState("wash");
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [showAINotification, setShowAINotification] = useState(true);
+  const [isAIHovered, setIsAIHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +28,16 @@ export default function LaunowHomePage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isAIHovered) {
+        setShowAINotification(prev => !prev);
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAIHovered]);
 
   const services = [
     {
@@ -95,9 +111,9 @@ export default function LaunowHomePage() {
       icon: <CheckCircle className="text-blue-500" size={24} />
     },
     {
-      title: "Customer Satisfaction",
-      desc: "4.9-star rated service",
-      icon: <Smile className="text-blue-500" size={24} />
+      title: "LauNow 360",
+      desc: "AI-powered garment lifespan tracking",
+      icon: <Activity className="text-blue-500" size={24} />
     }
   ];
 
@@ -157,6 +173,16 @@ export default function LaunowHomePage() {
               <a href="#pricing" className="text-gray-600 hover:text-blue-600 font-medium">Pricing</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 font-medium">How It Works</a>
               <a href="#testimonials" className="text-gray-600 hover:text-blue-600 font-medium">Testimonials</a>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsAboutModalOpen(true);
+                }}
+                className="text-gray-600 hover:text-blue-600 font-medium"
+              >
+                About Us
+              </a>
               <button 
                 onClick={handleWhatsApp}
                 className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full flex items-center space-x-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
@@ -166,7 +192,10 @@ export default function LaunowHomePage() {
               </button>
             </div>
             <div className="md:hidden">
-              <button className="text-gray-600">
+              <button 
+                onClick={() => setIsMobileNavOpen(true)}
+                className="text-gray-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -393,11 +422,11 @@ export default function LaunowHomePage() {
           </div>
 
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-            <div className="flex border-b">
+            <div className="flex flex-wrap border-b">
               {services.map((service) => (
                 <button
                   key={service.id}
-                  className={`flex-1 py-4 px-4 text-center font-medium ${
+                  className={`flex-1 min-w-[120px] py-4 px-4 text-center font-medium text-sm sm:text-base ${
                     activeTab === service.id
                       ? "bg-blue-600 text-white"
                       : "text-gray-600 hover:bg-gray-50"
@@ -409,12 +438,12 @@ export default function LaunowHomePage() {
               ))}
             </div>
 
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="p-4 sm:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {pricingTabs[activeTab].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 border-b border-gray-100">
-                    <span className="text-gray-800">{item.service}</span>
-                    <span className="font-semibold text-blue-600">{item.price}</span>
+                  <div key={idx} className="flex justify-between items-center p-3 sm:p-4 border-b border-gray-100">
+                    <span className="text-gray-800 text-sm sm:text-base">{item.service}</span>
+                    <span className="font-semibold text-blue-600 text-sm sm:text-base">{item.price}</span>
                   </div>
                 ))}
               </div>
@@ -460,55 +489,6 @@ export default function LaunowHomePage() {
               </div>
             ))}
           </div>
-
-          <div className="mt-12 md:mt-20 grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900">Student-Friendly Plans</h3>
-              <p className="mt-4 text-gray-600">
-                We understand student life and budget constraints. Our special student plans are designed to make 
-                laundry one less thing to worry about during your busy academic schedule.
-              </p>
-              <ul className="mt-6 space-y-3">
-                <li className="flex items-start">
-                  <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
-                  <span className="text-gray-700">Monthly plans starting at just ₹499</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
-                  <span className="text-gray-700">Hostel & PG pickup/delivery</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
-                  <span className="text-gray-700">Weekend scheduling options</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
-                  <span className="text-gray-700">Group discounts for roommates</span>
-                </li>
-              </ul>
-              <button 
-                onClick={handleWhatsApp}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-medium inline-flex items-center space-x-2 shadow-lg transition-all hover:shadow-xl"
-              >
-                <span>View Student Plans</span>
-                <MoveRight size={16} />
-              </button>
-            </div>
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl mx-auto w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-72">
-                <img src={studentImg} alt="Student using Launow" className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4">
-                <div className="flex items-center space-x-2">
-                  <Award className="h-8 w-8 text-blue-600" />
-                  <div>
-                    <p className="font-bold text-gray-900">Student Choice Award</p>
-                    <p className="text-sm text-gray-500">2024 & 2025</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -522,12 +502,12 @@ export default function LaunowHomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+              <div key={index} className="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-gray-100">
                 <div className="flex items-center mb-4">
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.name}</h4>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
                   </div>
                 </div>
@@ -536,7 +516,7 @@ export default function LaunowHomePage() {
                     <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-700 italic text-sm sm:text-base">"{testimonial.quote}"</p>
               </div>
             ))}
           </div>
@@ -565,38 +545,38 @@ export default function LaunowHomePage() {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-semibold text-gray-900">How long does the service take?</h3>
-              <p className="mt-2 text-gray-600">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How long does the service take?</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">
                 Our standard service takes 24-48 hours from pickup to delivery. We also offer express service with same-day or next-day delivery options for urgent needs.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-semibold text-gray-900">What areas in Salem do you cover?</h3>
-              <p className="mt-2 text-gray-600">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">What areas in Salem do you cover?</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">
                 We offer pickup and delivery services throughout Salem city and surrounding areas, including all major colleges, hostels, residential colonies, and apartments.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-semibold text-gray-900">How is pricing calculated?</h3>
-              <p className="mt-2 text-gray-600">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How is pricing calculated?</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">
                 For regular wash & iron services, we charge by weight (per kg). For dry cleaning and specialty items, we charge per piece. Student plans are available on a monthly subscription basis with a predetermined weight limit.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-semibold text-gray-900">What payment methods do you accept?</h3>
-              <p className="mt-2 text-gray-600">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">What payment methods do you accept?</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">
                 We accept all major payment methods including UPI, credit/debit cards, net banking, and cash on delivery. For subscription plans, we offer convenient auto-pay options.
               </p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-semibold text-gray-900">How do I track my order?</h3>
-              <p className="mt-2 text-gray-600">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How do I track my order?</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">
                 Once your order is confirmed, you'll receive status updates via WhatsApp at each stage of the process - from pickup to cleaning to delivery. You can also contact our customer support for real-time updates.
               </p>
             </div>
@@ -652,7 +632,18 @@ export default function LaunowHomePage() {
             <div>
               <h4 className="font-semibold text-lg mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="../" className="hover:text-white">About Us</a></li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsAboutModalOpen(true);
+                    }}
+                    className="hover:text-white"
+                  >
+                    About Us
+                  </a>
+                </li>
               </ul>
             </div>
             
@@ -676,13 +667,52 @@ export default function LaunowHomePage() {
           <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Launow. All rights reserved.</p>
             <div className="mt-4 md:mt-0 flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white">Privacy Policy</a>
-              <a href="#" className="hover:text-white">Terms of Service</a>
-              <a href="#" className="hover:text-white">Refund Policy</a>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage("privacy");
+                }} 
+                className="hover:text-white"
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage("terms");
+                }} 
+                className="hover:text-white"
+              >
+                Terms of Service
+              </a>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage("refund");
+                }} 
+                className="hover:text-white"
+              >
+                Refund Policy
+              </a>
             </div>
           </div>
         </div>
       </footer>
+
+      <AboutUsModal 
+        isOpen={isAboutModalOpen} 
+        onClose={() => setIsAboutModalOpen(false)} 
+      />
+
+      <MobileNav 
+        isOpen={isMobileNavOpen}
+        onClose={() => setIsMobileNavOpen(false)}
+        setPage={setPage}
+        handleWhatsApp={handleWhatsApp}
+      />
     </div>
   );
 }

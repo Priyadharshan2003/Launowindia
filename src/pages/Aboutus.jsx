@@ -2,7 +2,7 @@ import React from "react";
 import { Award, Users, Lightbulb, Star } from "lucide-react";
 import logoHeader from "../assets/logo_header.png";
 
-export default function AboutUs() {
+export default function AboutUs({ setPage }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center py-12 px-4">
       <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-8 md:p-12 flex flex-col items-center text-center">
@@ -41,6 +41,12 @@ export default function AboutUs() {
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl px-6 py-4 font-bold text-xl shadow-lg">
           Welcome to LauNow — Laundry. Now. Smarter.
         </div>
+        <button
+          onClick={() => setPage("home")}
+          className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          ← Back to Home
+        </button>
       </div>
     </div>
   );

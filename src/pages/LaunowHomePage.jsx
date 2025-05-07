@@ -323,32 +323,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </div>
 
-      {/* Trusted Partners Section */}
-      <section className="pt-8 pb-2 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-2">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Trusted Partners</h2>
-          </div>
-          <div className="flex justify-center items-center space-x-16">
-            <div className="w-48 h-48 flex items-center justify-center">
-              <img 
-                src={washbuddyLogo} 
-                alt="Washbuddy" 
-                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
-              />
-            </div>
-            <div className="w-56 h-56 flex items-center justify-center">
-              <img 
-                src={tumbledryLogo} 
-                alt="Tumble Dry" 
-                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
+      {/* Our Services */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -446,7 +421,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* How Launow Works */}
       <section id="how-it-works" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -522,7 +497,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Launch Off: Upto 20% Discount to Students (Transparent Pricing) */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -572,7 +547,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Why Choose Launow */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -596,7 +571,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -639,7 +614,32 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Our Trusted Partners */}
+      <section className="pt-8 pb-2 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-2">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Trusted Partners</h2>
+          </div>
+          <div className="flex flex-col items-center space-y-8 sm:flex-row sm:justify-center sm:items-center sm:space-y-0 sm:space-x-16">
+            <div className="w-48 h-48 flex items-center justify-center">
+              <img 
+                src={washbuddyLogo} 
+                alt="Washbuddy" 
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
+              />
+            </div>
+            <div className="w-56 h-56 flex items-center justify-center">
+              <img 
+                src={tumbledryLogo} 
+                alt="Tumble Dry" 
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -683,7 +683,7 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Need a Custom Quote? (CTA) */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready for Fresh, Clean Clothes?</h2>

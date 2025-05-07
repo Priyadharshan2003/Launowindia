@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { X } from "lucide-react";
 import logoHeader from "../../assets/logo_header.png";
 
 export default function RefundPolicy({ setPage }) {
@@ -9,13 +9,13 @@ export default function RefundPolicy({ setPage }) {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
             <img src={logoHeader} alt="LauNow Logo" className="h-8 w-auto" />
-            <h1 className="text-3xl font-bold text-gray-900">Refund Policy</h1>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900">Refund Policy</h2>
           </div>
           <button
             onClick={() => setPage("home")}
             className="flex items-center space-x-2 text-blue-600 hover:text-blue-700"
           >
-            <ArrowLeft size={20} />
+            <X size={20} />
             <span>Back to Home</span>
           </button>
         </div>

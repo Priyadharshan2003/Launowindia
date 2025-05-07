@@ -4,7 +4,6 @@ import logoHeader from "../assets/logo_header.png";
 import logoLight from "../assets/logo_light.png";
 import washingMachineVideo from "../assets/waiting_laundry.mp4";
 import studentImg from "../assets/student.png";
-import AboutUs from "./Aboutus";
 import AboutUsModal from "../components/AboutUsModal";
 import MobileNav from "../components/MobileNav";
 
@@ -15,6 +14,7 @@ export default function LaunowHomePage({ setPage }) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [showAINotification, setShowAINotification] = useState(true);
   const [isAIHovered, setIsAIHovered] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,6 +158,35 @@ export default function LaunowHomePage({ setPage }) {
       "_blank"
     );
   };
+
+  // FAQ data
+  const faqs = [
+    {
+      question: "How long does the service take?",
+      answer:
+        "Our standard service takes 24-48 hours from pickup to delivery. We also offer express service with same-day or next-day delivery options for urgent needs.",
+    },
+    {
+      question: "What areas in Salem do you cover?",
+      answer:
+        "We offer pickup and delivery services throughout Salem city and surrounding areas, including all major colleges, hostels, residential colonies, and apartments.",
+    },
+    {
+      question: "How is pricing calculated?",
+      answer:
+        "For regular wash & iron services, we charge by weight (per kg). For dry cleaning and specialty items, we charge per piece. Student plans are available on a monthly subscription basis with a predetermined weight limit.",
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer:
+        "We accept all major payment methods including UPI, credit/debit cards, net banking, and cash on delivery. For subscription plans, we offer convenient auto-pay options.",
+    },
+    {
+      question: "How do I track my order?",
+      answer:
+        "Once your order is confirmed, you'll receive status updates via WhatsApp at each stage of the process - from pickup to cleaning to delivery. You can also contact our customer support for real-time updates.",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -546,40 +575,35 @@ export default function LaunowHomePage({ setPage }) {
           </div>
 
           <div className="space-y-4 sm:space-y-6">
-            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How long does the service take?</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600">
-                Our standard service takes 24-48 hours from pickup to delivery. We also offer express service with same-day or next-day delivery options for urgent needs.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900">What areas in Salem do you cover?</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600">
-                We offer pickup and delivery services throughout Salem city and surrounding areas, including all major colleges, hostels, residential colonies, and apartments.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How is pricing calculated?</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600">
-                For regular wash & iron services, we charge by weight (per kg). For dry cleaning and specialty items, we charge per piece. Student plans are available on a monthly subscription basis with a predetermined weight limit.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900">What payment methods do you accept?</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600">
-                We accept all major payment methods including UPI, credit/debit cards, net banking, and cash on delivery. For subscription plans, we offer convenient auto-pay options.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900">How do I track my order?</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600">
-                Once your order is confirmed, you'll receive status updates via WhatsApp at each stage of the process - from pickup to cleaning to delivery. You can also contact our customer support for real-time updates.
-              </p>
-            </div>
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden">
+                <button
+                  className="w-full flex justify-between items-center p-4 sm:p-6 text-left focus-visible:outline-none focus-visible:ring-0"
+                  aria-expanded={openFaq === idx}
+                  aria-controls={`faq-panel-${idx}`}
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                >
+                  <span className="text-base sm:text-lg font-semibold text-gray-900">{faq.question}</span>
+                  <svg
+                    className={`w-5 h-5 ml-2 transition-transform duration-200 ${openFaq === idx ? 'transform rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openFaq === idx && (
+                  <div
+                    id={`faq-panel-${idx}`}
+                    className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-gray-600 animate-fadeIn"
+                  >
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -712,6 +736,7 @@ export default function LaunowHomePage({ setPage }) {
         onClose={() => setIsMobileNavOpen(false)}
         setPage={setPage}
         handleWhatsApp={handleWhatsApp}
+        openAboutModal={() => setIsAboutModalOpen(true)}
       />
     </div>
   );

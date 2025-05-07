@@ -4,6 +4,8 @@ import logoHeader from "../assets/logo_header.png";
 import suryaImage from "../assets/surya.jpg";
 import rithvikImage from "../assets/ritivk.jpg";
 import priyadharshanImage from "../assets/priyadharshan.png";
+import yogesh from "../assets/yogesh.jpg";
+import navina from "../assets/navina.png";
 
 const AboutUsModal = ({ isOpen, onClose }) => {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
@@ -31,6 +33,20 @@ const AboutUsModal = ({ isOpen, onClose }) => {
       image: priyadharshanImage,
       linkedin: "https://www.linkedin.com/in/priyadharshan-chandranath/",
       instagram: "https://www.instagram.com/priyadharshan_chandranath?igsh=dGZsaTZ4eDU1cHQw"
+    },
+    {
+      name: "Yogeshwaran G",
+      role: "Founding Member",
+      image: yogesh,
+      linkedin: "https://www.linkedin.com/in/yogeshwaran-g-7a19122b3/",
+      instagram: "https://www.instagram.com/yogesh_12x2?utm_source=qr&igsh=MXN1dDZ2ZnRtNHg4Zw=="
+    },
+    {
+      name: "Navina Tharsini Jeyakumar",
+      role: "Founding Member",
+      image: navina,
+      linkedin: "https://www.linkedin.com/in/navina-tharsini-jeyakumar-36475221b/",
+      instagram: "https://www.instagram.com/navina_jk?igsh=MTRuaW4wZGw0ZHU5Zw=="
     }
   ];
 

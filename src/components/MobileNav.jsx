@@ -2,7 +2,7 @@ import React from "react";
 import { X, MoveRight } from "lucide-react";
 import logoHeader from "../assets/logo_header.png";
 
-const MobileNav = ({ isOpen, onClose, setPage, handleWhatsApp }) => {
+const MobileNav = ({ isOpen, onClose, setPage, handleWhatsApp, openAboutModal }) => {
   if (!isOpen) return null;
 
   return (
@@ -78,7 +78,7 @@ const MobileNav = ({ isOpen, onClose, setPage, handleWhatsApp }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   onClose();
-                  setPage("about");
+                  if (openAboutModal) openAboutModal();
                 }}
                 className="block text-gray-700 hover:text-blue-600 py-2"
               >

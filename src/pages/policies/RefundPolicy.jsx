@@ -41,8 +41,8 @@ export default function RefundPolicy({ setPage }) {
             <ul className="list-disc pl-6 text-gray-700 space-y-2">
               <li>Submit a refund request within <strong>48 hours</strong> of delivery.</li>
               <li>Email us at{" "}
-                <a href="mailto:support@launow.in" className="text-blue-600 hover:text-blue-700">
-                  support@launow.in
+                <a href="mailto:support@launow.com" className="text-blue-600 hover:text-blue-700">
+                  support@launow.com
                 </a>{" "}
                 with your order ID and a brief explanation.
               </li>

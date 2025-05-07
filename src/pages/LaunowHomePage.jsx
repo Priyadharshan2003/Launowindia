@@ -4,6 +4,8 @@ import logoHeader from "../assets/logo_header.png";
 import logoLight from "../assets/logo_light.png";
 import washingMachineVideo from "../assets/waiting_laundry.mp4";
 import studentImg from "../assets/student.png";
+import washbuddyLogo from "../assets/washbuddy.png";
+import tumbledryLogo from "../assets/tumbledry.jpg";
 import AboutUsModal from "../components/AboutUsModal";
 import MobileNav from "../components/MobileNav";
 
@@ -121,22 +123,29 @@ export default function LaunowHomePage({ setPage }) {
 
   const methodPricing = {
     iron: {
-      washbuddy: { regular: "₹15/piece", discount: "₹13.5/piece" },
+      washbuddy: { regular: "₹15/piece", discount: "₹14/piece" },
       tumbledry: { regular: "₹35/piece", discount: "₹28/piece" }
     },
     washfold: {
-      washbuddy: { regular: "₹40/piece, ₹89/kg", discount: "₹36/piece, ₹80.1/kg" },
+      washbuddy: { regular: "₹40/piece, ₹89/kg", discount: "₹36/piece, ₹81/kg" },
       tumbledry: { regular: "₹85/kg", discount: "₹68/kg" }
     },
     washiron: {
-      washbuddy: { regular: "₹45/piece, ₹110/kg", discount: "₹40.5/piece, ₹99/kg" },
+      washbuddy: { regular: "₹45/piece, ₹110/kg", discount: "₹41/piece, ₹99/kg" },
       tumbledry: { regular: "₹130/kg", discount: "₹104/kg" }
     }
   };
 
-  const handleWhatsApp = () => {
+  const handleWhatsApp = (serviceType = 'general') => {
+    const messages = {
+      iron: "Hi!%20I%20want%20to%20use%20Launow%E2%80%99s%20*IRONING%20SERVICE*.%20Please%20share%20the%20details",
+      washfold: "Hi!%20I%20want%20to%20use%20Launow%E2%80%99s%20*WASH%20AND%20FOLD*.%20Please%20share%20the%20details",
+      washiron: "Hi!%20I%20want%20to%20use%20Launow%E2%80%99s%20*WASH%20AND%20IRON*.%20Please%20share%20the%20details",
+      general: "Hi!%20I%27m%20interested%20in%20using%20Launow%E2%80%99s%20services.%20Please%20send%20me%20the%20details"
+    };
+    
     window.open(
-      "https://wa.me/919488073258?text=Hi!%20I%27m%20interested%20in%20using%20Launow%E2%80%99s%20services.%20Please%20send%20me%20the%20details",
+      `https://wa.me/919488073258?text=${messages[serviceType]}`,
       "_blank"
     );
   };
@@ -173,7 +182,7 @@ export default function LaunowHomePage({ setPage }) {
   // Update the comparisonRows for Transparent Pricing with rounded discount prices
   const comparisonRows = [
     { service: "Iron", washbuddy: "₹14/piece", tumbledry: "₹28/piece" },
-    { service: "Wash and Fold", washbuddy: "₹36/piece, ₹80/kg", tumbledry: "₹68/kg" },
+    { service: "Wash and Fold", washbuddy: "₹36/piece, ₹81/kg", tumbledry: "₹68/kg" },
     { service: "Wash and Iron", washbuddy: "₹41/piece, ₹99/kg", tumbledry: "₹104/kg" }
   ];
 
@@ -202,7 +211,7 @@ export default function LaunowHomePage({ setPage }) {
                 About Us
               </a>
               <button 
-                onClick={handleWhatsApp}
+                onClick={() => handleWhatsApp('general')}
                 className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full flex items-center space-x-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 <span>Book on WhatsApp</span>
@@ -238,10 +247,10 @@ export default function LaunowHomePage({ setPage }) {
               </p>
               <div className="mt-10 flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4">
                 <button 
-                  onClick={handleWhatsApp}
+                  onClick={() => handleWhatsApp('general')}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium flex items-center space-x-2 shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1"
                 >
-                  <span>Schedule Pickup</span>
+                  <span>Schedule Your First Pickup</span>
                   <MoveRight size={16} />
                 </button>
                 <a 
@@ -284,7 +293,7 @@ export default function LaunowHomePage({ setPage }) {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">4.9/5 Rating</p>
-                  <p className="text-sm text-gray-500">500+ Happy Customers</p>
+                  <p className="text-sm text-gray-500">100+ Happy Customers</p>
                 </div>
               </div>
             </div>
@@ -314,11 +323,36 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </div>
 
+      {/* Trusted Partners Section */}
+      <section className="pt-8 pb-2 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-2">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Trusted Partners</h2>
+          </div>
+          <div className="flex justify-center items-center space-x-16">
+            <div className="w-48 h-48 flex items-center justify-center">
+              <img 
+                src={washbuddyLogo} 
+                alt="Washbuddy" 
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
+              />
+            </div>
+            <div className="w-56 h-56 flex items-center justify-center">
+              <img 
+                src={tumbledryLogo} 
+                alt="Tumble Dry" 
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Premium Services</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Our Services</h2>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
               Professional laundry and cleaning services tailored to your needs
             </p>
@@ -398,7 +432,7 @@ export default function LaunowHomePage({ setPage }) {
                   </div>
                   <div className="mt-auto flex justify-end items-end">
                     <button 
-                      onClick={handleWhatsApp}
+                      onClick={() => handleWhatsApp(service.id)}
                       className="text-blue-600 hover:text-blue-800 flex items-center group-hover:font-medium"
                     >
                       <span>Book Now</span>
@@ -478,7 +512,7 @@ export default function LaunowHomePage({ setPage }) {
 
           <div className="mt-12 text-center">
             <button 
-              onClick={handleWhatsApp}
+              onClick={() => handleWhatsApp('general')}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium flex items-center space-x-2 mx-auto shadow-lg transition-all hover:shadow-xl"
             >
               <span>Schedule Your First Pickup</span>
@@ -492,7 +526,7 @@ export default function LaunowHomePage({ setPage }) {
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Launch Off: 20% Discount to Students</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Launch Off: Upto 20% Discount to Students</h2>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
               Enjoy special student rates on all our premium laundry services!
             </p>
@@ -527,7 +561,7 @@ export default function LaunowHomePage({ setPage }) {
                 Have special requirements or bulk orders? We offer customized pricing.
               </p>
               <button 
-                onClick={handleWhatsApp}
+                onClick={() => handleWhatsApp('general')}
                 className="mt-6 bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full font-medium inline-flex items-center space-x-2 shadow-lg"
               >
                 <span>Contact Us</span>
@@ -658,7 +692,7 @@ export default function LaunowHomePage({ setPage }) {
           </p>
           <div className="mt-10">
             <button 
-              onClick={handleWhatsApp}
+              onClick={() => handleWhatsApp('general')}
               className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-2 shadow-lg transition-all hover:shadow-xl"
             >
               <span>Schedule Your Pickup Now</span>
@@ -716,11 +750,19 @@ export default function LaunowHomePage({ setPage }) {
               <h4 className="font-semibold text-lg mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>Salem, Tamil Nadu 636007</li>
-                <li>+91 94880 73258</li>
-                <li>support@launow.in</li>
+                <li>
+                  <a href="tel:+919488073258" className="hover:text-white transition-colors">
+                    +91 94880 73258
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:support@launow.com" className="hover:text-white transition-colors">
+                    support@launow.com
+                  </a>
+                </li>
               </ul>
               <button 
-                onClick={handleWhatsApp}
+                onClick={() => handleWhatsApp('general')}
                 className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm flex items-center space-x-2"
               >
                 <span>WhatsApp Us</span>

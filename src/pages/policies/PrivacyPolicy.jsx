@@ -58,8 +58,8 @@ export default function PrivacyPolicy({ setPage }) {
             <div className="mt-8 p-4 bg-blue-50 rounded-lg">
               <p className="text-gray-700">
                 For any privacy-related concerns, contact us at{" "}
-                <a href="mailto:support@launow.in" className="text-blue-600 hover:text-blue-700">
-                  support@launow.in
+                <a href="mailto:support@launow.com" className="text-blue-600 hover:text-blue-700">
+                  support@launow.com
                 </a>
               </p>
             </div>

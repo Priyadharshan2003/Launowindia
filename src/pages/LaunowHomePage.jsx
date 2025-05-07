@@ -9,7 +9,7 @@ import MobileNav from "../components/MobileNav";
 
 export default function LaunowHomePage({ setPage }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeTab, setActiveTab] = useState("wash");
+  const [activeTab, setActiveTab] = useState("iron");
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [showAINotification, setShowAINotification] = useState(true);
@@ -41,52 +41,42 @@ export default function LaunowHomePage({ setPage }) {
 
   const services = [
     {
-      id: "wash",
-      title: "Wash & Iron",
-      desc: "Professional cleaning with perfect ironing for everyday clothes",
-      price: "₹120/kg",
-      icon: "👕"
-    },
-    {
-      id: "dry",
-      title: "Dry Clean",
-      desc: "Specialized cleaning for delicate fabrics and formal wear",
-      price: "From ₹199",
-      icon: "👔"
-    },
-    {
       id: "iron",
-      title: "Express Iron",
-      desc: "Swift ironing service for a crisp, professional look",
-      price: "₹15/piece",
+      title: "Iron",
+      desc: "Professional ironing for your garments",
       icon: "🧥"
     },
     {
-      id: "student",
-      title: "Student Plans",
-      desc: "Budget-friendly monthly plans for college students",
-      price: "From ₹499/month",
-      icon: "🎓"
+      id: "washfold",
+      title: "Wash and Fold",
+      desc: "Wash and fold service for your clothes",
+      icon: "🧺"
+    },
+    {
+      id: "washiron",
+      title: "Wash and Iron",
+      desc: "Wash and iron service for your clothes",
+      icon: "👕"
     }
   ];
 
   const testimonials = [
     {
-      name: "Priya Sharma",
+      name: "Priya S",
       role: "Engineering Student",
       image: "/api/placeholder/80/80",
       rating: 5,
       quote: "Launow has transformed my hostel life! No more weekend laundry struggles. Their student plan is perfect for my budget, and the WhatsApp booking is super convenient."
     },
     {
-      name: "Karthik Menon",
+      name: "Karthik R",
       role: "Software Developer",
       image: "/api/placeholder/80/80",
       rating: 5,
       quote: "As a busy professional, Launow has been a lifesaver. The quality is impeccable, and I love that they're eco-conscious. The mobile notifications keep me updated about my order status."
     },
     {
-      name: "Ananya Patel",
+      name: "Ram kumar",
       role: "Local Business Owner",
       image: "/api/placeholder/80/80",
       rating: 5,
@@ -118,38 +108,30 @@ export default function LaunowHomePage({ setPage }) {
   ];
 
   const pricingTabs = {
-    wash: [
-      { service: "Regular Clothes", price: "₹120/kg" },
-      { service: "Wash & Fold Only", price: "₹99/kg" },
-      { service: "Premium Garments", price: "₹150/kg" },
-      { service: "Bedsheets (Single)", price: "₹40/piece" },
-      { service: "Bedsheets (Double)", price: "₹60/piece" },
-      { service: "Curtains", price: "From ₹80/piece" }
-    ],
-    dry: [
-      { service: "Suits/Blazers", price: "₹299/piece" },
-      { service: "Sarees (Silk)", price: "₹249/piece" },
-      { service: "Winter Wear", price: "₹199/piece" },
-      { service: "Blankets (Single)", price: "₹250/piece" },
-      { service: "Blankets (Double)", price: "₹350/piece" },
-      { service: "Leather Items", price: "From ₹399" }
-    ],
     iron: [
-      { service: "Shirts/T-shirts", price: "₹15/piece" },
-      { service: "Trousers/Jeans", price: "₹20/piece" },
-      { service: "Saree with Rolling", price: "₹35/piece" },
-      { service: "Kurta/Kurtis", price: "₹20/piece" },
-      { service: "Bed Sheets", price: "₹25/piece" },
-      { service: "Premium Garments", price: "₹30/piece" }
+      { service: "Iron (Washbuddy)", price: "₹13/piece" }
     ],
-    student: [
-      { service: "Basic (5kg/month)", price: "₹499/month" },
-      { service: "Standard (8kg/month)", price: "₹749/month" },
-      { service: "Premium (12kg/month)", price: "₹999/month" },
-      { service: "Add-on Iron Service", price: "+₹299/month" },
-      { service: "Weekend Delivery", price: "Free" },
-      { service: "Express Service", price: "+₹99/order" }
+    washfold: [
+      { service: "Wash and Fold (Washbuddy)", price: "₹76/kg" }
+    ],
+    washiron: [
+      { service: "Wash and Iron (Washbuddy)", price: "₹94/kg" }
     ]
+  };
+
+  const methodPricing = {
+    iron: {
+      washbuddy: { regular: "₹15/piece", discount: "₹13.5/piece" },
+      tumbledry: { regular: "₹35/piece", discount: "₹28/piece" }
+    },
+    washfold: {
+      washbuddy: { regular: "₹40/piece, ₹89/kg", discount: "₹36/piece, ₹80.1/kg" },
+      tumbledry: { regular: "₹85/kg", discount: "₹68/kg" }
+    },
+    washiron: {
+      washbuddy: { regular: "₹45/piece, ₹110/kg", discount: "₹40.5/piece, ₹99/kg" },
+      tumbledry: { regular: "₹130/kg", discount: "₹104/kg" }
+    }
   };
 
   const handleWhatsApp = () => {
@@ -186,6 +168,13 @@ export default function LaunowHomePage({ setPage }) {
       answer:
         "Once your order is confirmed, you'll receive status updates via WhatsApp at each stage of the process - from pickup to cleaning to delivery. You can also contact our customer support for real-time updates.",
     },
+  ];
+
+  // Update the comparisonRows for Transparent Pricing with rounded discount prices
+  const comparisonRows = [
+    { service: "Iron", washbuddy: "₹14/piece", tumbledry: "₹28/piece" },
+    { service: "Wash and Fold", washbuddy: "₹36/piece, ₹80/kg", tumbledry: "₹68/kg" },
+    { service: "Wash and Iron", washbuddy: "₹41/piece, ₹99/kg", tumbledry: "₹104/kg" }
   ];
 
   return (
@@ -335,20 +324,79 @@ export default function LaunowHomePage({ setPage }) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <div 
                 key={service.id}
-                className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1 group"
+                className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1 group flex flex-col"
               >
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 flex justify-center">
                   <span className="text-5xl">{service.icon}</span>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                  <p className="mt-2 text-gray-600">{service.desc}</p>
-                  <div className="mt-4 flex justify-between items-end">
-                    <p className="font-semibold text-blue-600">{service.price}</p>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{service.title}</h3>
+                  <p className="mb-4 text-gray-600">{service.desc}</p>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+                    <div className="grid grid-cols-2 gap-2">
+                      {/* Washbuddy Pricing */}
+                      <div>
+                        <div className="font-semibold text-blue-700 mb-1">Washbuddy</div>
+                        <div className="text-xs text-gray-500">Regular</div>
+                        <div className="font-medium text-gray-900 mb-1">
+                          {service.id === 'iron' && methodPricing[service.id].washbuddy.regular}
+                          {service.id === 'washfold' && (
+                            <>
+                              {methodPricing[service.id].washbuddy.regular.split(', ').map((p, i) => (
+                                <div key={i}>{p}</div>
+                              ))}
+                            </>
+                          )}
+                          {service.id === 'washiron' && (
+                            <>
+                              {methodPricing[service.id].washbuddy.regular.split(', ').map((p, i) => (
+                                <div key={i}>{p}</div>
+                              ))}
+                            </>
+                          )}
+                        </div>
+                        <div className="text-xs text-green-700">Discount</div>
+                        <div className="font-medium text-green-700">
+                          {service.id === 'iron' && methodPricing[service.id].washbuddy.discount}
+                          {service.id === 'washfold' && (
+                            <>
+                              {methodPricing[service.id].washbuddy.discount.split(', ').map((p, i) => (
+                                <div key={i}>{p}</div>
+                              ))}
+                            </>
+                          )}
+                          {service.id === 'washiron' && (
+                            <>
+                              {methodPricing[service.id].washbuddy.discount.split(', ').map((p, i) => (
+                                <div key={i}>{p}</div>
+                              ))}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {/* Tumble Dry Pricing */}
+                      <div>
+                        <div className="font-semibold text-indigo-700 mb-1">Tumble Dry</div>
+                        <div className="text-xs text-gray-500">Regular</div>
+                        <div className="font-medium text-gray-900 mb-1">
+                          {methodPricing[service.id].tumbledry.regular.split(', ').map((p, i) => (
+                            <div key={i}>{p}</div>
+                          ))}
+                        </div>
+                        <div className="text-xs text-green-700">Discount</div>
+                        <div className="font-medium text-green-700">
+                          {methodPricing[service.id].tumbledry.discount.split(', ').map((p, i) => (
+                            <div key={i}>{p}</div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-auto flex justify-end items-end">
                     <button 
                       onClick={handleWhatsApp}
                       className="text-blue-600 hover:text-blue-800 flex items-center group-hover:font-medium"
@@ -444,39 +492,32 @@ export default function LaunowHomePage({ setPage }) {
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Transparent Pricing</h2>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Launch Off: 20% Discount to Students</h2>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Affordable rates with no hidden charges
+              Enjoy special student rates on all our premium laundry services!
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-            <div className="flex flex-wrap border-b">
-              {services.map((service) => (
-                <button
-                  key={service.id}
-                  className={`flex-1 min-w-[120px] py-4 px-4 text-center font-medium text-sm sm:text-base ${
-                    activeTab === service.id
-                      ? "bg-blue-600 text-white"
-                      : "text-gray-600 hover:bg-gray-50"
-                  }`}
-                  onClick={() => setActiveTab(service.id)}
-                >
-                  {service.title}
-                </button>
-              ))}
-            </div>
-
-            <div className="p-4 sm:p-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                {pricingTabs[activeTab].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-3 sm:p-4 border-b border-gray-100">
-                    <span className="text-gray-800 text-sm sm:text-base">{item.service}</span>
-                    <span className="font-semibold text-blue-600 text-sm sm:text-base">{item.price}</span>
-                  </div>
+          {/* Comparison Table */}
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200 rounded-xl shadow-md">
+              <thead>
+                <tr>
+                  <th className="px-6 py-3 border-b text-left text-sm font-semibold text-gray-700">Service</th>
+                  <th className="px-6 py-3 border-b text-left text-sm font-semibold text-blue-600">Washbuddy</th>
+                  <th className="px-6 py-3 border-b text-left text-sm font-semibold text-indigo-600">Tumble Dry</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row, idx) => (
+                  <tr key={idx} className="border-b last:border-b-0">
+                    <td className="px-6 py-4 text-gray-900 font-medium">{row.service}</td>
+                    <td className="px-6 py-4 text-blue-700">{row.washbuddy}</td>
+                    <td className="px-6 py-4 text-indigo-700">{row.tumbledry}</td>
+                  </tr>
                 ))}
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
 
           <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-xl overflow-hidden">

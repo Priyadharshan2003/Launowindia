@@ -323,6 +323,15 @@ export default function LaunowHomePage({ setPage }) {
         </div>
       </div>
 
+      {/* Marquee Announcement */}
+      <div className="relative overflow-hidden bg-blue-600 py-2">
+        <div className="whitespace-nowrap animate-marquee text-white font-semibold text-lg">
+          <span className="mx-8">Exclusive discount for Students on 15th, 16th, 17th as we are launching</span>
+          <span className="mx-8">Exclusive discount for Students on 15th, 16th, 17th as we are launching</span>
+          <span className="mx-8">Exclusive discount for Students on 15th, 16th, 17th as we are launching</span>
+        </div>
+      </div>
+
       {/* Our Services */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

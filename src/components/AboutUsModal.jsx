@@ -15,21 +15,28 @@ const AboutUsModal = ({ isOpen, onClose }) => {
   const founders = [
     {
       name: "Surya Narayanan C S",
-      role: "Co-Founder & CEO",
+      role: "Founding Member",
       image: suryaImage,
       linkedin: "https://www.linkedin.com/in/suryacssn/",
       instagram: "https://www.instagram.com/surya._.spells?igsh=MTdqZ3I1bDZ5djd6bg=="
     },
     {
+      name: "Navina Tharsini Jeyakumar",
+      role: "Founding Member",
+      image: navina,
+      linkedin: "https://www.linkedin.com/in/navina-tharsini-jeyakumar-36475221b/",
+      instagram: "https://www.instagram.com/navina_jk?igsh=MTRuaW4wZGw0ZHU5Zw=="
+    },
+    {
       name: "Rithvikailas G",
-      role: "Co-Founder & CTO",
+      role: "Founding Member",
       image: rithvikImage,
       linkedin: "https://www.linkedin.com/in/rithvikailas-gunasekaran/",
       instagram: "https://www.instagram.com/rithvikailas?igsh=ZzY1cGlzZzg2YWE1"
     },
     {
       name: "Priyadharshan C",
-      role: "Co-Founder & COO",
+      role: "Founding Member",
       image: priyadharshanImage,
       linkedin: "https://www.linkedin.com/in/priyadharshan-chandranath/",
       instagram: "https://www.instagram.com/priyadharshan_chandranath?igsh=dGZsaTZ4eDU1cHQw"
@@ -40,13 +47,6 @@ const AboutUsModal = ({ isOpen, onClose }) => {
       image: yogesh,
       linkedin: "https://www.linkedin.com/in/yogeshwaran-g-7a19122b3/",
       instagram: "https://www.instagram.com/yogesh_12x2?utm_source=qr&igsh=MXN1dDZ2ZnRtNHg4Zw=="
-    },
-    {
-      name: "Navina Tharsini Jeyakumar",
-      role: "Founding Member",
-      image: navina,
-      linkedin: "https://www.linkedin.com/in/navina-tharsini-jeyakumar-36475221b/",
-      instagram: "https://www.instagram.com/navina_jk?igsh=MTRuaW4wZGw0ZHU5Zw=="
     }
   ];
 
